@@ -1,0 +1,85 @@
+definitions:
+  models.Todo:
+    type: object
+info:
+  contact: {}
+paths:
+  /api/todos:
+    get:
+      consumes:
+      - application/json
+      description: Get all todo
+      produces:
+      - application/json
+      responses: {}
+      summary: Get all todo
+      tags:
+      - todos
+    patch:
+      consumes:
+      - application/json
+      description: Update todo
+      parameters:
+      - description: Update todo
+        in: body
+        name: todo
+        required: true
+        schema:
+          $ref: '#/definitions/models.Todo'
+      produces:
+      - application/json
+      responses: {}
+      summary: Update todo
+      tags:
+      - todos
+    post:
+      consumes:
+      - application/json
+      description: Register todo
+      parameters:
+      - description: Register todo
+        in: body
+        name: todo
+        required: true
+        schema:
+          $ref: '#/definitions/models.Todo'
+      produces:
+      - application/json
+      responses: {}
+      summary: Register a new todo
+      tags:
+      - todos
+  /api/todos/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Remove todo by ID
+      parameters:
+      - description: Todo ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      summary: Remove todo by ID
+      tags:
+      - todos
+    get:
+      consumes:
+      - application/json
+      description: Get todo by ID
+      parameters:
+      - description: Todo ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      summary: Get todo by ID
+      tags:
+      - todos
+swagger: "2.0"

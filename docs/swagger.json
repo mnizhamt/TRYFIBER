@@ -1,0 +1,127 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "contact": {}
+    },
+    "paths": {
+        "/api/todos": {
+            "get": {
+                "description": "Get all todo",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "todos"
+                ],
+                "summary": "Get all todo",
+                "responses": {}
+            },
+            "post": {
+                "description": "Register todo",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "todos"
+                ],
+                "summary": "Register a new todo",
+                "parameters": [
+                    {
+                        "description": "Register todo",
+                        "name": "todo",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Todo"
+                        }
+                    }
+                ],
+                "responses": {}
+            },
+            "patch": {
+                "description": "Update todo",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "todos"
+                ],
+                "summary": "Update todo",
+                "parameters": [
+                    {
+                        "description": "Update todo",
+                        "name": "todo",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Todo"
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/api/todos/{id}": {
+            "get": {
+                "description": "Get todo by ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "todos"
+                ],
+                "summary": "Get todo by ID",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Todo ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            },
+            "delete": {
+                "description": "Remove todo by ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "todos"
+                ],
+                "summary": "Remove todo by ID",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Todo ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            }
+        }
+    },
+    "definitions": {
+        "models.Todo": {
+            "type": "object"
+        }
+    }
+}
