@@ -5,11 +5,12 @@ import (
 	"os"
 
 	_ "bankcapital.co.id/tryfiber/docs"
+	"bankcapital.co.id/tryfiber/router"
 
-	"bankcapital.co.id/tryfiber/controllers"
 	"github.com/Kamva/mgm/v2"
 	swagger "github.com/arsmn/fiber-swagger/v2"
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
@@ -27,14 +28,17 @@ func init() {
 
 func main() {
 	app := fiber.New()
+	app.Use(cors.New())
 
-	app.Get("/api/todos", controllers.GetAllTodos)
-	app.Get("/api/todos/:id", controllers.GetTodoByID)
-	app.Post("/api/todos", controllers.CreateTodo)
-	app.Patch("/api/todos/:id", controllers.ToggleTodoStatus)
-	app.Delete("/api/todos/:id", controllers.DeleteTodo)
-
+	// OpenAPI documentation
 	app.Get("/docs/*", swagger.HandlerDefault)
+
+	router.SetupRoutes(app)
+
+	// 404 Handler
+	app.Use(func(c *fiber.Ctx) error {
+		return c.SendStatus(404)
+	})
 
 	log.Fatal(app.Listen(":3000"))
 }

@@ -41,7 +41,7 @@ func GetAllTodos(ctx *fiber.Ctx) error {
 // @Param id path int true "Todo ID"
 // @Router /api/todos/{id} [get]
 func GetTodoByID(ctx *fiber.Ctx) error {
-	id := ctx.Params("id")
+	var id string = ctx.Params("id")
 
 	todo := &models.Todo{}
 	collection := mgm.Coll(todo)
@@ -105,7 +105,7 @@ func CreateTodo(ctx *fiber.Ctx) error {
 // @Accept json
 // @Produce json
 // @Param todo body models.Todo true "Update todo"
-// @Router /api/todos [patch]
+// @Router /api/todos/{id} [patch]
 func ToggleTodoStatus(ctx *fiber.Ctx) error {
 	id := ctx.Params("id")
 
